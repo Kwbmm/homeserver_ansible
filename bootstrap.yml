@@ -1,0 +1,17 @@
+---
+
+- hosts: all
+  become: yes
+  vars_prompt:
+    - name: password
+      prompt: Input new password for 'pi' user
+  tasks:
+    - name: change password
+      user:
+        name: pi
+        update_password: always
+        password: "{{password | password_hash('sha512')}}"
+    - name: update and upgrade packages
+      apt:
+        update_cache: yes
+        upgrade: yes
