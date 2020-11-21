@@ -26,6 +26,7 @@
           - git
           - gnupg-agent
           - gocryptfs
+          - apache2-utils
           - software-properties-common
     - name: Add 'docker' group
       group:
