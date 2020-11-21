@@ -6,12 +6,40 @@
     - name: password
       prompt: Input new password for 'pi' user
   tasks:
-    - name: change password
+    - name: Change password
       user:
         name: pi
         update_password: always
         password: "{{password | password_hash('sha512')}}"
-    - name: update and upgrade packages
+    - name: Update and upgrade packages
       apt:
         update_cache: yes
         upgrade: yes
+    - name: Install docker and required packages
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - docker
+          - docker-compose
+          - git
+          - gnupg-agent
+          - gocryptfs
+          - software-properties-common
+    - name: Add 'docker' group
+      group:
+        name: docker
+    - name: Add user to 'docker' group
+      user:
+        append: yes
+        groups: docker
+        name: pi
+    - name: Install 'megacmd'
+      apt:
+        deb: https://mega.nz/linux/MEGAsync/Raspbian_10.0/armhf/megacmd-Raspbian_10.0_armhf.deb
+    - name: Clone 'homeserver' repo
+      become: no
+      git:
+        repo: https://github.com/Kwbmm/Homeserver.git
+        dest: homeserver
