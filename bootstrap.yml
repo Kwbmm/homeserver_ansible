@@ -44,3 +44,10 @@
       git:
         repo: https://github.com/Kwbmm/Homeserver.git
         dest: homeserver
+    - name: Set firefly crontab
+      ansible.builtin.cron:
+        name: Launch firefly daily tx
+        minute: 0
+        hour: 3
+        job: ~/homeserver/firefly-recurring-trans.sh
+        user: pi
