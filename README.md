@@ -1,6 +1,22 @@
 # homeserver_ansible
 Ansible playbook to bootstrap my [homeserver](https://github.com/Kwbmm/Homeserver)
 
+# Running the playbook
+
+## Install `passlib`
+The playbook asks for a new password for default user. Thus, `passlib` python library needs to be installed. It's better to make a virtual environment to not pollute the host system, so run:
+
+```sh
+python3 -m venv .env && \
+source .env/bin/activate && \
+pip install -r requirements.txt
+```
+
+to create the virtual environment, load (source) it and install `passlib`
+
+## <a href="run"></a>Run
+
+The playbook can be run with `ansible-playbook bootstrap.yml -K`. The `host` in `bootstrap.yml' should be set to `rpi`
 
 # Test
 
@@ -35,3 +51,7 @@ ssh -i ~/.ssh/id_homeserver_ansible_login test@172.17.0.2
 ```
 
 (IP address may vary)
+
+The `host` in `bootstrap.yml` should be set to `test`.
+
+Refer to [Run](#run) section for launching the playbook.
