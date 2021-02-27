@@ -1,14 +1,14 @@
 ---
 
-- hosts: all
+- hosts: test
   become: yes
   vars_prompt:
     - name: password
-      prompt: Input new password for 'pi' user
+      prompt: Input new password for user
   tasks:
     - name: Change password
       user:
-        name: pi
+        name: "{{ usr }}"
         update_password: always
         password: "{{password | password_hash('sha512')}}"
     - name: Update and upgrade packages
@@ -35,7 +35,7 @@
       user:
         append: yes
         groups: docker
-        name: pi
+        name: "{{ usr }}"
     - name: Install 'megacmd'
       apt:
         deb: https://mega.nz/linux/MEGAsync/Raspbian_10.0/armhf/megacmd-Raspbian_10.0_armhf.deb
@@ -50,4 +50,4 @@
         minute: 0
         hour: 3
         job: ~/homeserver/firefly-recurring-trans.sh
-        user: pi
+        user: "{{ usr }}"
