@@ -1,8 +1,10 @@
 FROM debian:latest
 
-RUN apt update && apt install openssh-server sudo -y
-RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
-RUN echo 'test:test' | chpasswd
+RUN apt update && apt install openssh-server python3 sudo -y
+RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test \
+    && echo 'test:test' | chpasswd \
+    && mkdir /home/ubuntu/.ssh \
+    && chown test:root /home/ubuntu/.ssh
 
 RUN service ssh start
 
