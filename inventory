@@ -1,1 +1,6 @@
-192.168.188.24
+[rpi]
+192.168.188.24 ansible_user=pi
+
+
+[test]
+172.17.0.2 ansible_user=test
