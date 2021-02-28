@@ -16,7 +16,7 @@ to create the virtual environment, load (source) it and install `passlib`
 
 ## <a href="run"></a>Run
 
-The playbook can be run with `ansible-playbook bootstrap.yml -K`. The `host` in `bootstrap.yml' should be set to `rpi`
+The playbook can be run with `ansible-playbook bootstrap.yml -K`. The `host` in `bootstrap.yml` should be set to `rpi`
 
 # Test
 
