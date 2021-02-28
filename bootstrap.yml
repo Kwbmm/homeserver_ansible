@@ -11,6 +11,8 @@
         name: "{{ usr }}"
         update_password: always
         password: "{{password | password_hash('sha512')}}"
+    - name: Update password used
+      set_fact: ansible_become_pass="{{password}}"
     - name: Update and upgrade packages
       apt:
         update_cache: yes
@@ -38,7 +40,7 @@
         name: "{{ usr }}"
     - name: Install 'megacmd'
       apt:
-        deb: https://mega.nz/linux/MEGAsync/Raspbian_10.0/armhf/megacmd-Raspbian_10.0_armhf.deb
+        deb: "{{ mega_url }}"
     - name: Clone 'homeserver' repo
       become: no
       git:

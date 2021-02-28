@@ -1,6 +1,6 @@
 [rpi]
-192.168.188.24 ansible_user=pi
+192.168.188.24 ansible_user=pi mega_url=https://mega.nz/linux/MEGAsync/Raspbian_10.0/armhf/megacmd-Raspbian_10.0_armhf.deb
 
 
 [test]
-172.17.0.2 ansible_user=test
+172.17.0.2 ansible_user=test mega_url=https://mega.nz/linux/MEGAsync/Debian_10.0/amd64/megacmd-Debian_10.0_amd64.deb
