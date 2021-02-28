@@ -39,7 +39,7 @@ docker run -p 22:22 -d debian_ssh
 You will need to copy the ansible ssh key:
 
 ```sh
-scp ~/.ssh/id_homeserver_ansible_login.pub test@172.17.0.2:~/.ssh/authrozied_keys
+scp ~/.ssh/id_homeserver_ansible_login.pub test@172.17.0.2:~/.ssh/authorized_keys
 ```
 
 The password for `test` user is `test`.
