@@ -46,10 +46,33 @@
       git:
         repo: https://github.com/Kwbmm/Homeserver.git
         dest: homeserver
-    - name: Set firefly crontab
+    - name: Set firefly cron
       ansible.builtin.cron:
-        name: Launch firefly daily tx
+        name: Launch firefly daily tx at 3am
         minute: 0
         hour: 3
         job: ~/homeserver/firefly-recurring-trans.sh
         user: "{{ usr }}"
+    - name: Set backup cron
+      ansible.builtin.cron:
+        name: Launch backup of volumes every 5 days at 4am
+        minute: 0
+        hour: 4
+        day: "*/5"
+        job: ~/homeserver/backup-volumes.sh
+        user: "{{ usr }}"
+    - name: Start docker at boot cron
+      ansible.builtin.cron:
+        name: Start docker at boot
+        special_time: reboot
+        job: cd ~/homeserver/ && docker-compose up -d
+        user: "{{ usr }}"
+    - name: Reboot cron
+      ansible.builtin.cron:
+        name: Reboot the system every day at 5 
+        minute: 0
+        hour: 5
+        job: cd /home/pi/homeserver/ && docker-compose down && /sbin/reboot
+        user: root
+      
+    
