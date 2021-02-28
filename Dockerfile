@@ -1,6 +1,6 @@
 FROM debian:latest
 
-RUN apt update && apt install openssh-server python3 sudo -y
+RUN apt update && apt install openssh-server python3 sudo cron vim -y
 RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test \
     && echo 'test:test' | chpasswd \
     && mkdir /home/ubuntu/.ssh \
