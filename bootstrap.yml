@@ -45,7 +45,13 @@
       become: no
       git:
         repo: https://github.com/Kwbmm/Homeserver.git
-        dest: homeserver
+        dest: ~/homeserver
+    - name: Changing perm of "~/homeserver/init_volumes.sh", adding "+x"
+      become: no
+      file: dest=~/homeserver/init_volumes.sh mode=+x
+    - name: Init volumes
+      become: no
+      ansible.builtin.command: ~/homeserver/./init_volumes.sh
     - name: Set backup cron
       ansible.builtin.cron:
         name: Launch backup of volumes every 5 days at 4am
